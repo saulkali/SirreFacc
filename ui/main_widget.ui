@@ -56,6 +56,13 @@
            <widget class="QLineEdit" name="input_code_bar"/>
           </item>
           <item>
+           <widget class="QPushButton" name="button_search_article">
+            <property name="text">
+             <string>search</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="button_open_cash_drawing">
             <property name="text">
              <string>open cash</string>
@@ -172,6 +179,19 @@
                 </widget>
                </item>
                <item>
+                <spacer name="verticalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
                 <widget class="QLabel" name="label_mode_system">
                  <property name="text">
                   <string>Shooping Card</string>
@@ -191,10 +211,30 @@
                  </property>
                 </spacer>
                </item>
+               <item>
+                <widget class="QLCDNumber" name="lcd_number_efective_pay"/>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
               </layout>
              </item>
              <item>
-              <widget class="QCalendarWidget" name="calendar"/>
+              <widget class="QCalendarWidget" name="calendar">
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -245,7 +285,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>657</width>
-                <height>256</height>
+                <height>218</height>
                </rect>
               </property>
              </widget>

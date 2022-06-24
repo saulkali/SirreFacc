@@ -15,3 +15,5 @@ title_create_article = "Añadir Articulo"
 mode_system_shopping_car = "Carrito De Venta"
 mode_system_pay_efective = "Pago Efectivo"
 
+msg_mode_system_not_found = "Modo de sistema no encontrado"
+

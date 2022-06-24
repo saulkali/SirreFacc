@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QDoubleSpinBox, QFrame, QHBoxLayout,
+    QLabel, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -91,10 +91,15 @@ class Ui_Form(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.label_amount = QLabel(self.frame)
-        self.label_amount.setObjectName(u"label_amount")
+        self.spin_amount = QDoubleSpinBox(self.frame)
+        self.spin_amount.setObjectName(u"spin_amount")
 
-        self.horizontalLayout.addWidget(self.label_amount)
+        self.horizontalLayout.addWidget(self.spin_amount)
+
+        self.label_mode_shopping = QLabel(self.frame)
+        self.label_mode_shopping.setObjectName(u"label_mode_shopping")
+
+        self.horizontalLayout.addWidget(self.label_mode_shopping)
 
         self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -138,7 +143,7 @@ class Ui_Form(object):
         self.label_code_bar.setText(QCoreApplication.translate("Form", u"1234", None))
         self.label_name.setText(QCoreApplication.translate("Form", u"lubricante para cadenas", None))
         self.button_delete.setText(QCoreApplication.translate("Form", u"Delete", None))
-        self.label_amount.setText(QCoreApplication.translate("Form", u"30.0 pz", None))
+        self.label_mode_shopping.setText(QCoreApplication.translate("Form", u"PZ", None))
         self.label_price_unitary.setText(QCoreApplication.translate("Form", u"TextLabel", None))
         self.label_total_pay.setText(QCoreApplication.translate("Form", u"$200", None))
     # retranslateUi

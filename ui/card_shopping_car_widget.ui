@@ -160,9 +160,12 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="label_amount">
+             <widget class="QDoubleSpinBox" name="spin_amount"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_mode_shopping">
               <property name="text">
-               <string>30.0 pz</string>
+               <string>PZ</string>
               </property>
              </widget>
             </item>

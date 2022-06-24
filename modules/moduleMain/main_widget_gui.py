@@ -54,6 +54,11 @@ class Ui_Form(object):
 
         self.horizontalLayout.addWidget(self.input_code_bar)
 
+        self.button_search_article = QPushButton(self.frame_root)
+        self.button_search_article.setObjectName(u"button_search_article")
+
+        self.horizontalLayout.addWidget(self.button_search_article)
+
         self.button_open_cash_drawing = QPushButton(self.frame_root)
         self.button_open_cash_drawing.setObjectName(u"button_open_cash_drawing")
 
@@ -64,6 +69,11 @@ class Ui_Form(object):
 
         self.frame_controls = QFrame(self.frame_root)
         self.frame_controls.setObjectName(u"frame_controls")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.frame_controls.sizePolicy().hasHeightForWidth())
+        self.frame_controls.setSizePolicy(sizePolicy1)
         self.frame_controls.setFrameShape(QFrame.StyledPanel)
         self.frame_controls.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.frame_controls)
@@ -134,6 +144,10 @@ class Ui_Form(object):
 
         self.verticalLayout_5.addWidget(self.label_2)
 
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_5.addItem(self.verticalSpacer_6)
+
         self.label_mode_system = QLabel(self.frame_controls)
         self.label_mode_system.setObjectName(u"label_mode_system")
 
@@ -143,11 +157,21 @@ class Ui_Form(object):
 
         self.verticalLayout_5.addItem(self.verticalSpacer_4)
 
+        self.lcd_number_efective_pay = QLCDNumber(self.frame_controls)
+        self.lcd_number_efective_pay.setObjectName(u"lcd_number_efective_pay")
+
+        self.verticalLayout_5.addWidget(self.lcd_number_efective_pay)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_5.addItem(self.verticalSpacer_5)
+
 
         self.horizontalLayout_3.addLayout(self.verticalLayout_5)
 
         self.calendar = QCalendarWidget(self.frame_controls)
         self.calendar.setObjectName(u"calendar")
+        self.calendar.setFocusPolicy(Qt.NoFocus)
 
         self.horizontalLayout_3.addWidget(self.calendar)
 
@@ -159,6 +183,11 @@ class Ui_Form(object):
 
         self.frame_shopping_car = QFrame(self.frame_root)
         self.frame_shopping_car.setObjectName(u"frame_shopping_car")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.frame_shopping_car.sizePolicy().hasHeightForWidth())
+        self.frame_shopping_car.setSizePolicy(sizePolicy2)
         self.frame_shopping_car.setMinimumSize(QSize(50, 50))
         self.frame_shopping_car.setFrameShape(QFrame.StyledPanel)
         self.frame_shopping_car.setFrameShadow(QFrame.Raised)
@@ -170,7 +199,7 @@ class Ui_Form(object):
         self.scroll_area_shopping_car.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 657, 226))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 657, 218))
         self.scroll_area_shopping_car.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayout_10.addWidget(self.scroll_area_shopping_car)
@@ -193,6 +222,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label.setText(QCoreApplication.translate("Form", u"TextLabel", None))
+        self.button_search_article.setText(QCoreApplication.translate("Form", u"search", None))
         self.button_open_cash_drawing.setText(QCoreApplication.translate("Form", u"open cash", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"Total:", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"TextLabel", None))

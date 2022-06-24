@@ -18,6 +18,10 @@ class CardShoppingCarWidget(QWidget,Ui_Form):
 
         self.loadShoppingCarEntity()
         self.setupButtons()
+        self.setupSpins()
+    
+    def setupSpins(self):
+        self.spin_amount.valueChanged.connect(self.editAmount)
     
     def setupButtons(self):
         self.button_delete.clicked.connect(self.deleteThisWidget)
@@ -29,9 +33,14 @@ class CardShoppingCarWidget(QWidget,Ui_Form):
         loadImage(self.label_photo,self.shoppingCarEntity.photoUrlArticle)
         self.label_code_bar.setText(self.shoppingCarEntity.idArticle)
         self.label_name.setText(self.shoppingCarEntity.nameArticle)
-        self.label_amount.setText(self.shoppingCarEntity.amountArticle.__str__())
+        self.spin_amount.setValue(self.shoppingCarEntity.amountArticle)
         self.label_price_unitary.setText(self.shoppingCarEntity.priceUniArticle.__str__())
         self.label_total_pay.setText(self.getTotal().__str__())
     
+    def editAmount(self,amount):
+        self.shoppingCarEntity.amountArticle = amount
+        self.label_total_pay.setText(self.getTotal().__str__())
+        self.listener.refreshTotal.emit()
+
     def getTotal(self) -> float:
         return self.shoppingCarEntity.amountArticle * self.shoppingCarEntity.priceUniArticle
