@@ -1,0 +1,7 @@
+.qt_for_python/
+__pycache__
+.git
+main.spec
+key_firebase.json
+dist
+build
