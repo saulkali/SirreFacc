@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>736</width>
-    <height>500</height>
+    <width>813</width>
+    <height>757</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -34,7 +34,7 @@
         <item>
          <widget class="QFrame" name="frame_search">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -42,7 +42,13 @@
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>0</height>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="frameShape">
@@ -83,7 +89,14 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="input_code_bar"/>
+              <widget class="QLineEdit" name="input_code_bar">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -92,10 +105,16 @@
         </item>
         <item>
          <widget class="QFrame" name="frame_recycle_article">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>300</height>
+            <height>0</height>
            </size>
           </property>
           <property name="frameShape">
@@ -107,6 +126,12 @@
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <widget class="QScrollArea" name="scroll_area_articles">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="widgetResizable">
               <bool>true</bool>
              </property>
@@ -115,8 +140,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>656</width>
-                <height>272</height>
+                <width>733</width>
+                <height>517</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_7"/>

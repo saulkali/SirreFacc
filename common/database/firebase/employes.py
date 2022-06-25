@@ -12,6 +12,12 @@ def saveEmploye(employeEntity:EmployeEntity):
     employeEntity.id = key
     firebase.db.child(firebaseConstants.referenceEmploye).child(key).set(employeEntity.dict())
 
+def updateEmploye(employeEntity:EmployeEntity):
+    firebase.db.child(firebaseConstants.referenceEmploye).child(employeEntity.id).update(employeEntity.dict())
+
+def deleteEmploye(employeEntity:EmployeEntity):
+    firebase.db.child(firebaseConstants.referenceEmploye).child(employeEntity.id).delete()
+
 def getAllEmployes() -> list:
     '''get all employes firebase'''
     listEmployes = []
@@ -22,3 +28,13 @@ def getAllEmployes() -> list:
             employeEntity.id = key
             listEmployes.append(employeEntity)
     return listEmployes
+
+def loginEmploye(email:str,password:str)->bool:
+    employeJson = firebase.db.child(firebaseConstants.referenceEmploye).order_by_child("email").equal_to(email).limit_to_first(1).get().popitem()
+    if employeJson is not None:
+        key,value = employeJson
+        employeEntity = EmployeEntity.parse_obj(value)
+        if employeEntity.password.__eq__(password):
+            return True
+        return False
+    return False

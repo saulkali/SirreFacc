@@ -24,7 +24,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(713, 589)
+        Form.resize(782, 613)
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.frame_root = QFrame(Form)
@@ -35,45 +35,60 @@ class Ui_Form(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label = QLabel(self.frame_root)
-        self.label.setObjectName(u"label")
-        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        self.frame_search = QFrame(self.frame_root)
+        self.frame_search.setObjectName(u"frame_search")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.frame_search.sizePolicy().hasHeightForWidth())
+        self.frame_search.setSizePolicy(sizePolicy)
+        self.frame_search.setMinimumSize(QSize(0, 40))
+        self.frame_search.setFrameShape(QFrame.StyledPanel)
+        self.frame_search.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_9 = QVBoxLayout(self.frame_search)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.label = QLabel(self.frame_search)
+        self.label.setObjectName(u"label")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy1)
         self.label.setMinimumSize(QSize(32, 32))
         self.label.setMaximumSize(QSize(32, 32))
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.input_code_bar = QLineEdit(self.frame_root)
+        self.input_code_bar = QLineEdit(self.frame_search)
         self.input_code_bar.setObjectName(u"input_code_bar")
 
         self.horizontalLayout.addWidget(self.input_code_bar)
 
-        self.button_search_article = QPushButton(self.frame_root)
+        self.button_search_article = QPushButton(self.frame_search)
         self.button_search_article.setObjectName(u"button_search_article")
 
         self.horizontalLayout.addWidget(self.button_search_article)
 
-        self.button_open_cash_drawing = QPushButton(self.frame_root)
+        self.button_open_cash_drawing = QPushButton(self.frame_search)
         self.button_open_cash_drawing.setObjectName(u"button_open_cash_drawing")
 
         self.horizontalLayout.addWidget(self.button_open_cash_drawing)
 
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        self.verticalLayout_9.addLayout(self.horizontalLayout)
+
+
+        self.verticalLayout_2.addWidget(self.frame_search)
 
         self.frame_controls = QFrame(self.frame_root)
         self.frame_controls.setObjectName(u"frame_controls")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frame_controls.sizePolicy().hasHeightForWidth())
-        self.frame_controls.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.frame_controls.sizePolicy().hasHeightForWidth())
+        self.frame_controls.setSizePolicy(sizePolicy2)
         self.frame_controls.setFrameShape(QFrame.StyledPanel)
         self.frame_controls.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.frame_controls)
@@ -95,6 +110,11 @@ class Ui_Form(object):
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_8.addItem(self.verticalSpacer)
+
+        self.button_reset_shopping_car = QPushButton(self.frame_controls)
+        self.button_reset_shopping_car.setObjectName(u"button_reset_shopping_car")
+
+        self.verticalLayout_8.addWidget(self.button_reset_shopping_car)
 
 
         self.horizontalLayout_3.addLayout(self.verticalLayout_8)
@@ -183,11 +203,11 @@ class Ui_Form(object):
 
         self.frame_shopping_car = QFrame(self.frame_root)
         self.frame_shopping_car.setObjectName(u"frame_shopping_car")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.frame_shopping_car.sizePolicy().hasHeightForWidth())
-        self.frame_shopping_car.setSizePolicy(sizePolicy2)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.frame_shopping_car.sizePolicy().hasHeightForWidth())
+        self.frame_shopping_car.setSizePolicy(sizePolicy3)
         self.frame_shopping_car.setMinimumSize(QSize(50, 50))
         self.frame_shopping_car.setFrameShape(QFrame.StyledPanel)
         self.frame_shopping_car.setFrameShadow(QFrame.Raised)
@@ -199,7 +219,7 @@ class Ui_Form(object):
         self.scroll_area_shopping_car.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 657, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 726, 216))
         self.scroll_area_shopping_car.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayout_10.addWidget(self.scroll_area_shopping_car)
@@ -225,6 +245,7 @@ class Ui_Form(object):
         self.button_search_article.setText(QCoreApplication.translate("Form", u"search", None))
         self.button_open_cash_drawing.setText(QCoreApplication.translate("Form", u"open cash", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"Total:", None))
+        self.button_reset_shopping_car.setText(QCoreApplication.translate("Form", u"reset", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"TextLabel", None))
         self.label_3.setText(QCoreApplication.translate("Form", u"TextLabel", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"Mode System:", None))

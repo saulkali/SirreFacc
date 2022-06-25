@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QMainWindow,QWidget,QVBoxLayout
+from PySide6.QtCore import Qt
 
 #widgets windows
 from modules.moduleMain.main_widget import MainWidget
@@ -51,3 +52,17 @@ class RootWindow(QMainWindow,Ui_MainWindow):
         oldWidget.hide()
         newWidget.show()
         self.box_root.addWidget(newWidget)
+    
+    def showDockWidget(self):
+        if self.dock_widget_control.isHidden():
+            self.dock_widget_control.show()
+        else:
+            self.dock_widget_control.hide()
+            
+    def keyPressEvent(self, event) -> None:
+        key = event.key()
+        match key:
+            case Qt.Key_F10:
+                self.showDockWidget()
+            case _:
+                return super().keyPressEvent(event)

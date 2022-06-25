@@ -13,16 +13,40 @@ from .details_employe_dialog_gui import Ui_Dialog
 #entities
 from common.entities.employe_entity import EmployeEntity
 
+from modules.moduleEmploye.signals.employe_aux_widget import EmployeAuxWidget
+
 #firebase
 from common.database.firebase import employes
 
 class DetailsEmployeDialog(QDialog,Ui_Dialog):
-    def __init__(self, parent = None) -> None:
+
+    isEdit:bool = False
+    listener:EmployeAuxWidget
+    employeEntity:EmployeEntity
+
+    def __init__(self, listener:EmployeAuxWidget,parent = None,employeEntity:EmployeEntity = None) -> None:
         super().__init__(parent)
         self.setupUi(self)
+        self.listener = listener
+        self.employeEntity = employeEntity
 
+        self.setWindowTitle(strings.title_create_employe)
+        if self.employeEntity is not None:
+            self.isEdit = True
+            self.loadEmploye()
+            self.setWindowTitle(strings.title_edit_employe)
         self.setupButtons()
-        
+    
+    def loadEmploye(self):
+        self.input_photo_url.setText(self.employeEntity.photoUrl)
+        self.input_first_name.setText(self.employeEntity.firstName)
+        self.input_last_name.setText(self.employeEntity.lastName)
+        self.input_password.setText(self.employeEntity.password)
+        self.input_confirm_password.setText(self.employeEntity.password)
+        self.input_phone.setText(self.employeEntity.phone)
+        self.input_address.setText(self.employeEntity.address)
+        self.input_email.setText(self.employeEntity.email)
+        self.input_rfc.setText(self.employeEntity.rfc)
 
     def setupButtons(self):
         self.button_accept.clicked.connect(self.validateEmploye)
@@ -41,8 +65,13 @@ class DetailsEmployeDialog(QDialog,Ui_Dialog):
                 rfc = self.input_rfc.text(),
                 permissions = self.combo_box_permissions.currentIndex()
             )
-            employes.saveEmploye(employe)
+            if self.isEdit:
+                employe.id = self.employeEntity.id
+                employes.updateEmploye(employe)
+            else:
+                employes.saveEmploye(employe)
             self.clearFields()
+            self.listener.reloadListEmployes.emit()
         except ValidationError as error:
             QMessageBox.warning(self,strings.msg_error,error.errors().__str__())
     

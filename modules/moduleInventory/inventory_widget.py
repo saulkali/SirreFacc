@@ -45,29 +45,30 @@ class InventoryWidget(QWidget,Ui_Form):
         self.input_code_bar.returnPressed.connect(self.filterArticleList)
 
     def filterArticleList(self):
-        listFilterArticle = []
+        codeBar = self.input_code_bar.text().lower()
+        listFilterArticles = []
         for cardArticle in self.listArticles:
-            if self.input_code_bar.text().lower() in cardArticle.article.name.lower():
-                listFilterArticle.append(cardArticle.article)
-        self.setupQwidgets()
-        self.setListCardArticles(listFilterArticle)
+            if codeBar in cardArticle.article.name.lower() or codeBar in cardArticle.article.id:
+                newCardArticle = CardArticle(cardArticle.listener,cardArticle.article,self)
+                listFilterArticles.append(newCardArticle)
+        self.setListCardArticles(listFilterArticles)
 
     def codeBarTextChanged(self,codeBar):
         if codeBar.__len__() == 0:
             self.getAllArticles()
 
     def setupListener(self):
-        self.listener.reloadInventory.connect(self.setupQwidgets)
+        self.listener.reloadInventory.connect(self.getAllArticles)
         
     def setupQwidgets(self):
         self.widgetRoot = QWidget(self)
         self.recycleBox = QGridLayout(self)
         self.recycleBox.setContentsMargins(6,6,6,6)
-
         self.widgetRoot.setLayout(self.recycleBox)
         self.scroll_area_articles.setWidget(self.widgetRoot)
 
     def getAllArticles(self):
+        self.listArticles.clear()
         listArticle:list = articles.getAllArticles()
         for article in listArticle:
             cardArticle = CardArticle(self.listener,article,self)
@@ -75,6 +76,7 @@ class InventoryWidget(QWidget,Ui_Form):
         self.setListCardArticles(self.listArticles)
 
     def setListCardArticles(self,listCardArticle:list):
+        self.setupQwidgets()
         row = 0
         column = 0
         sizeColumn = 3
@@ -94,3 +96,4 @@ class InventoryWidget(QWidget,Ui_Form):
 
     def getArticles(self):
         self.listArticles = articles.getAllArticles()
+

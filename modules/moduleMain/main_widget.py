@@ -50,10 +50,15 @@ class MainWidget(QWidget,Ui_Form):
         self.recycleBoxShoppingCar = QGridLayout(self)
 
         self.setupScrollArea()
-
+        self.setupButtons()
         self.setupEditLine()
         self.setupMainAuxSignal()
         self.setupModeSystem()
+
+    def setupButtons(self):
+        self.button_reset_shopping_car.setEnabled(False)
+        self.button_reset_shopping_car.clicked.connect(self.clearShoppingCar)
+
     def setupModeSystem(self):
         self.label_mode_system.setText(strings.mode_system_shopping_car)
     
@@ -107,6 +112,12 @@ class MainWidget(QWidget,Ui_Form):
         for article in self.listArticleShopping:
             print(article.getTotal())
             total = total + article.getTotal()
+        
+        if total > 0:
+            self.button_reset_shopping_car.setEnabled(True)
+        else:
+            self.button_reset_shopping_car.setEnabled(False)
+
         self.lcd_number_total.display(total)
     
 
@@ -164,7 +175,16 @@ class MainWidget(QWidget,Ui_Form):
         self.columnCounterShoppingCar = 0
         self.rowCounterShoppingCar = 0
         self.lcd_number_efective_pay.display(0)
-        
+    
+    def clearShoppingCar(self):
+        msg = QMessageBox().warning(self,strings.msg_await,strings.msg_ask_clear_shopping_car,QMessageBox.Yes|QMessageBox.No)
+        if msg == QMessageBox.Yes:
+            for article in self.listArticleShopping:
+                article.close()
+            self.listArticleShopping.clear()
+            self.resetValueShoppingCard()
+            self.refreshTotal()
+            self.setModeSystem(strings.mode_system_shopping_car)
 
     def setDisplayLcdSale(self):
         self.lcd_number_payment.display(float(self.totalPayDigit))

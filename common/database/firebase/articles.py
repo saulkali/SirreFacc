@@ -41,8 +41,7 @@ def deleteAmountArticle(codeBar:str,amount:float):
         firebase.db.child(firebaseConstants.referenceArticle).child(article.id).update({"amount":article.amount})
 
 def existsArticle(codeBar:str)->bool:
-    
-    article = firebase.db.child(firebaseConstants.referenceArticle).child(codeBar)
+    article = firebase.db.child(firebaseConstants.referenceArticle).child(codeBar).get()
     if article == None:
         return False
     return True

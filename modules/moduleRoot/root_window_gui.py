@@ -16,9 +16,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QDockWidget, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
-    QStatusBar, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QDockWidget, QHBoxLayout, QLabel,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -30,26 +30,49 @@ class Ui_MainWindow(object):
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 22))
-        self.menuarchivos = QMenu(self.menubar)
-        self.menuarchivos.setObjectName(u"menuarchivos")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
         self.dock_widget_control = QDockWidget(MainWindow)
         self.dock_widget_control.setObjectName(u"dock_widget_control")
         self.dock_widget_control.setFloating(False)
         self.dock_widget_control.setAllowedAreas(Qt.LeftDockWidgetArea)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
+        self.dockWidgetContents.setMinimumSize(QSize(100, 0))
+        self.dockWidgetContents.setMaximumSize(QSize(100, 16777215))
         self.verticalLayout_2 = QVBoxLayout(self.dockWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.label_photo_employe = QLabel(self.dockWidgetContents)
+        self.label_photo_employe.setObjectName(u"label_photo_employe")
+        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_photo_employe.sizePolicy().hasHeightForWidth())
+        self.label_photo_employe.setSizePolicy(sizePolicy)
+        self.label_photo_employe.setMinimumSize(QSize(100, 100))
+        self.label_photo_employe.setMaximumSize(QSize(100, 100))
+
+        self.horizontalLayout.addWidget(self.label_photo_employe)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.label_name_employe = QLabel(self.dockWidgetContents)
+        self.label_name_employe.setObjectName(u"label_name_employe")
+
+        self.verticalLayout.addWidget(self.label_name_employe)
+
         self.button_open_shopping_card = QPushButton(self.dockWidgetContents)
         self.button_open_shopping_card.setObjectName(u"button_open_shopping_card")
 
@@ -69,14 +92,21 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
+        self.button_settings = QPushButton(self.dockWidgetContents)
+        self.button_settings.setObjectName(u"button_settings")
+
+        self.verticalLayout.addWidget(self.button_settings)
+
+        self.button_logout = QPushButton(self.dockWidgetContents)
+        self.button_logout.setObjectName(u"button_logout")
+
+        self.verticalLayout.addWidget(self.button_logout)
+
 
         self.verticalLayout_2.addLayout(self.verticalLayout)
 
         self.dock_widget_control.setWidget(self.dockWidgetContents)
         MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.dock_widget_control)
-
-        self.menubar.addAction(self.menuarchivos.menuAction())
-        self.menuarchivos.addAction(self.actioncerrar)
 
         self.retranslateUi(MainWindow)
 
@@ -86,9 +116,12 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.actioncerrar.setText(QCoreApplication.translate("MainWindow", u"cerrar", None))
-        self.menuarchivos.setTitle(QCoreApplication.translate("MainWindow", u"archivos", None))
+        self.label_photo_employe.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_name_employe.setText(QCoreApplication.translate("MainWindow", u"Saul burciaga Hernandez", None))
         self.button_open_shopping_card.setText(QCoreApplication.translate("MainWindow", u"Shopping Card", None))
         self.button_open_inventory.setText(QCoreApplication.translate("MainWindow", u"inventory", None))
         self.button_open_employes.setText(QCoreApplication.translate("MainWindow", u"Employe", None))
+        self.button_settings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
+        self.button_logout.setText(QCoreApplication.translate("MainWindow", u"logout", None))
     # retranslateUi
 
