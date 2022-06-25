@@ -9,13 +9,14 @@ from helper import singleton
 #entities
 from common.entities.article_entity import ArticleEntity
 from common.entities.shopping_car_entity import ShoppingCardEntity
+from common.entities.sale_entity import SaleEntity
 
 #gui
 from .main_widget_gui import Ui_Form
 
 #firebase database
 from common.database.firebase import articles
-
+from common.database.firebase import sales
 
 #values
 from common.values import strings
@@ -82,7 +83,7 @@ class MainWidget(QWidget,Ui_Form):
             idArticle = article.id,
             nameArticle = article.name,
             photoUrlArticle = article.photoUrl,
-            amountArticle = article.amount,
+            amountArticle = 1.0,
             priceUniArticle = article.price
         )
         cardShoppingCarWidget = CardShoppingCarWidget(shoppingEntity,self.listener,self)
@@ -96,12 +97,13 @@ class MainWidget(QWidget,Ui_Form):
             self.columnCounterShoppingCar = 0
             self.rowCounterShoppingCar +=1
 
+        self.lcd_number_change.display(0)
+        self.lcd_number_payment.display(0)
         self.refreshTotal()
     
 
     def refreshTotal(self):
         total = 0
-        
         for article in self.listArticleShopping:
             print(article.getTotal())
             total = total + article.getTotal()
@@ -138,8 +140,36 @@ class MainWidget(QWidget,Ui_Form):
     
 
     def closeShoppingCard(self):
+        listShoppingCard = []
+
+        for item in self.listArticleShopping:
+            articles.deleteAmountArticle(item.shoppingCarEntity.idArticle,item.shoppingCarEntity.amountArticle)
+            self.recycleBoxShoppingCar.removeWidget(item)
+            listShoppingCard.append(item.shoppingCarEntity)
+            item.close()
         self.listArticleShopping.clear()
+        self.saveSale(listShoppingCard)
+        self.setDisplayLcdSale()
+
+        self.resetValueShoppingCard()
         self.reloadShoppingCardItems()
+        self.setModeSystem(strings.mode_system_shopping_car)
+    
+    def saveSale(self,listShoppingCard:list):
+        sale = SaleEntity(listArticle = listShoppingCard)
+        sales.saveSale(sale)
+
+    def resetValueShoppingCard(self):
+        self.totalPayDigit = ""
+        self.columnCounterShoppingCar = 0
+        self.rowCounterShoppingCar = 0
+        self.lcd_number_efective_pay.display(0)
+        
+
+    def setDisplayLcdSale(self):
+        self.lcd_number_payment.display(float(self.totalPayDigit))
+        change = self.lcd_number_payment.value() - self.lcd_number_total.value()
+        self.lcd_number_change.display(change)
 
     def verifyPay(self):
         if float(self.totalPayDigit) < self.lcd_number_total.value():
@@ -157,9 +187,8 @@ class MainWidget(QWidget,Ui_Form):
             case _:
                 if self.modeSystem == strings.mode_system_pay_efective:
                     match key:
-                        case Qt.Key_Enter:
+                        case Qt.Key_Space:
                             self.verifyPay()
-                            print("enter key")
                         case Qt.Key_0:
                             self.setDigitTotalPay("0")
                         case Qt.Key_1:
@@ -192,7 +221,6 @@ class MainWidget(QWidget,Ui_Form):
         row = 0
         column = 0
         for widget in self.listArticleShopping:
-            
             if column == self.columnSizeShoppingCar:
                 column = 0
                 row +=1
@@ -207,6 +235,8 @@ class MainWidget(QWidget,Ui_Form):
         msg_result = QMessageBox.warning(self,strings.msg_delete,strings.msg_delete_ask,QMessageBox.Yes|QMessageBox.No)
         if msg_result == QMessageBox.Yes:
             self.listArticleShopping.remove(shoppingCarEntity)
+            self.recycleBoxShoppingCar.removeWidget(shoppingCarEntity)
             shoppingCarEntity.close()
+            self.resetValueShoppingCard()
             self.reloadShoppingCardItems()
             

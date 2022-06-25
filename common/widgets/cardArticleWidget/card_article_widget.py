@@ -21,6 +21,8 @@ from common.values import strings
 
 class CardArticle (QWidget,Ui_Form):
     listener:InventoryAuxWidget
+    article:ArticleEntity
+    
     def __init__(self,listener:InventoryAuxWidget,article:ArticleEntity, parent = None) -> None:
         super().__init__(parent)
         self.setupUi(self)

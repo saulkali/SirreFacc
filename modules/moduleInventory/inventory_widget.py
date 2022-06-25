@@ -30,11 +30,32 @@ class InventoryWidget(QWidget,Ui_Form):
     def __init__(self, parent = None) -> None:
         super().__init__(parent)
         self.setupUi(self)
-
-        self.setupQwidgets()
+        
         self.setupButtons()
+        self.setupEditlines()
         self.setupListener()
+        self.setupQwidgets()
+
+        self.getAllArticles()
+
+       
     
+    def setupEditlines(self):
+        self.input_code_bar.textChanged.connect(self.codeBarTextChanged)
+        self.input_code_bar.returnPressed.connect(self.filterArticleList)
+
+    def filterArticleList(self):
+        listFilterArticle = []
+        for cardArticle in self.listArticles:
+            if self.input_code_bar.text().lower() in cardArticle.article.name.lower():
+                listFilterArticle.append(cardArticle.article)
+        self.setupQwidgets()
+        self.setListCardArticles(listFilterArticle)
+
+    def codeBarTextChanged(self,codeBar):
+        if codeBar.__len__() == 0:
+            self.getAllArticles()
+
     def setupListener(self):
         self.listener.reloadInventory.connect(self.setupQwidgets)
         
@@ -46,16 +67,19 @@ class InventoryWidget(QWidget,Ui_Form):
         self.widgetRoot.setLayout(self.recycleBox)
         self.scroll_area_articles.setWidget(self.widgetRoot)
 
-        self.setListArticles()
+    def getAllArticles(self):
+        listArticle:list = articles.getAllArticles()
+        for article in listArticle:
+            cardArticle = CardArticle(self.listener,article,self)
+            self.listArticles.append(cardArticle)
+        self.setListCardArticles(self.listArticles)
 
-    def setListArticles(self):
+    def setListCardArticles(self,listCardArticle:list):
         row = 0
         column = 0
         sizeColumn = 3
-        for article in articles.getAllArticles():
-            cardArticle = CardArticle(self.listener,article,self)
-            self.recycleBox.addWidget(cardArticle,row,column)
-            self.listArticles.append(cardArticle)
+        for CardArticle in listCardArticle:
+            self.recycleBox.addWidget(CardArticle,row,column)
             column += 1
             if column == sizeColumn:
                 row += 1
