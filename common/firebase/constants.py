@@ -1,6 +1,6 @@
 referenceArticle = "articles"
 referenceEmploye = "employes"
-referenceSale = "Sales"
+referenceSale = "sales"
 
 
 referenceIdArticle = "id"

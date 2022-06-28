@@ -1,0 +1,29 @@
+<RCC>
+  <qresource prefix="main_widget">
+    <file>src/money.png</file>
+    <file>src/pieces_.png</file>
+    <file>src/trash_button.png</file>
+    <file>src/search_ico.png</file>
+    <file>src/border_text.png</file>
+    <file>src/btn_cash.png</file>
+    <file>src/btn_search.png</file>
+    <file>src/header_mone.png</file>
+    <file>src/header_money_client.png</file>
+    <file>src/header_total.png</file>
+    <file>src/mode_system.png</file>
+    <file>src/restore_btn1.png</file>
+  </qresource>
+  <qresource prefix="root_window">
+    <file>src/close_session.png</file>
+    <file>src/setting_butt.png</file>
+    <file>src/employe.png</file>
+    <file>src/inventory.png</file>
+    <file>src/shopping_card.png</file>
+    <file>src/user.png</file>
+  </qresource>
+  <qresource prefix="card_article_widget">
+    <file>src/money.png</file>
+    <file>src/pieces_.png</file>
+    <file>src/trash_button.png</file>
+  </qresource>
+</RCC>

@@ -6,16 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>782</width>
-    <height>613</height>
+    <width>808</width>
+    <height>722</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(33, 40, 63);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QFrame" name="frame_root">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(40, 49, 78);</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -38,6 +44,9 @@
             <width>0</width>
             <height>40</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(23, 28, 43);</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -69,24 +78,90 @@
                 </size>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="resources_qt.qrc">:/main_widget/src/search_ico.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="input_code_bar"/>
+              <widget class="QLineEdit" name="input_code_bar">
+               <property name="font">
+                <font>
+                 <family>Ausion Personal Use Extra</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: 2px solid gray;
+ border-radius: 10px;
+border-color: rgb(0, 254, 187);
+background-color: rgb(31, 38, 59);
+color: rgb(255, 255, 255);
+selection-color: rgb(0, 0, 0);
+selection-background-color: rgb(70, 254, 227);</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="button_search_article">
+               <property name="font">
+                <font>
+                 <family>Ausion Personal Use</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(175, 255, 234);</string>
+               </property>
                <property name="text">
                 <string>search</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources_qt.qrc">
+                 <normaloff>:/main_widget/src/btn_search.png</normaloff>:/main_widget/src/btn_search.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="button_open_cash_drawing">
+               <property name="font">
+                <font>
+                 <family>Ausion Personal Use</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(175, 255, 234);</string>
+               </property>
                <property name="text">
                 <string>open cash</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resources_qt.qrc">
+                 <normaloff>:/main_widget/src/btn_cash.png</normaloff>:/main_widget/src/btn_cash.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -103,6 +178,9 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(51, 62, 99);</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
@@ -115,14 +193,65 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>10</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resources_qt.qrc">:/main_widget/src/header_total.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                 <property name="margin">
+                  <number>-2</number>
+                 </property>
+                 <property name="indent">
+                  <number>90</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QLabel" name="label_7">
+                 <property name="font">
+                  <font>
+                   <family>Ausion Personal Use</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(255, 255, 255);</string>
+                 </property>
                  <property name="text">
                   <string>Total:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLCDNumber" name="lcd_number_total"/>
+                <widget class="QLCDNumber" name="lcd_number_total">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(16, 20, 31);
+color: rgb(0, 254, 187);</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <spacer name="verticalSpacer">
@@ -140,7 +269,20 @@
                <item>
                 <widget class="QPushButton" name="button_reset_shopping_car">
                  <property name="text">
-                  <string>reset</string>
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resources_qt.qrc">
+                   <normaloff>:/main_widget/src/restore_btn1.png</normaloff>:/main_widget/src/restore_btn1.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>35</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -149,14 +291,65 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>10</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resources_qt.qrc">:/main_widget/src/header_mone.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                 <property name="margin">
+                  <number>-2</number>
+                 </property>
+                 <property name="indent">
+                  <number>90</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QLabel" name="label_6">
+                 <property name="font">
+                  <font>
+                   <family>Ausion Personal Use</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(255, 255, 255);</string>
+                 </property>
                  <property name="text">
                   <string>TextLabel</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLCDNumber" name="lcd_number_change"/>
+                <widget class="QLCDNumber" name="lcd_number_change">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(16, 20, 31);
+color: rgb(0, 254, 187);</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <spacer name="verticalSpacer_2">
@@ -176,14 +369,65 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
+                <widget class="QLabel" name="label_8">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>10</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resources_qt.qrc">:/main_widget/src/header_money_client.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                 <property name="margin">
+                  <number>-2</number>
+                 </property>
+                 <property name="indent">
+                  <number>90</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QLabel" name="label_3">
+                 <property name="font">
+                  <font>
+                   <family>Ausion Personal Use</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(255, 255, 255);</string>
+                 </property>
                  <property name="text">
                   <string>TextLabel</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLCDNumber" name="lcd_number_payment"/>
+                <widget class="QLCDNumber" name="lcd_number_payment">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(16, 20, 31);
+color: rgb(0, 254, 187);</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <spacer name="verticalSpacer_3">
@@ -203,7 +447,53 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_5">
                <item>
+                <widget class="QLabel" name="label_9">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>10</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="resources_qt.qrc">:/main_widget/src/mode_system.png</pixmap>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                 <property name="margin">
+                  <number>-2</number>
+                 </property>
+                 <property name="indent">
+                  <number>90</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QLabel" name="label_2">
+                 <property name="font">
+                  <font>
+                   <family>Ausion Personal Use</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(255, 255, 255);</string>
+                 </property>
                  <property name="text">
                   <string>Mode System:</string>
                  </property>
@@ -224,6 +514,15 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_mode_system">
+                 <property name="font">
+                  <font>
+                   <family>Ausion Personal Use</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(255, 255, 255);</string>
+                 </property>
                  <property name="text">
                   <string>Shooping Card</string>
                  </property>
@@ -243,7 +542,12 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLCDNumber" name="lcd_number_efective_pay"/>
+                <widget class="QLCDNumber" name="lcd_number_efective_pay">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(16, 20, 31);
+color: rgb(0, 254, 187);</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <spacer name="verticalSpacer_5">
@@ -262,8 +566,21 @@
              </item>
              <item>
               <widget class="QCalendarWidget" name="calendar">
+               <property name="font">
+                <font>
+                 <family>Ausion Personal Use</family>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
                <property name="focusPolicy">
                 <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(40, 49, 78);
+alternate-background-color: rgb(23, 28, 43);
+color: rgb(255, 255, 255);
+selection-background-color: rgb(54, 67, 106);
+selection-color: rgb(183, 243, 255);</string>
                </property>
               </widget>
              </item>
@@ -285,6 +602,9 @@
             <width>50</width>
             <height>50</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(23, 28, 43);</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -315,8 +635,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>726</width>
-                <height>216</height>
+                <width>764</width>
+                <height>351</height>
                </rect>
               </property>
              </widget>
@@ -332,6 +652,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources_qt.qrc"/>
+ </resources>
  <connections/>
 </ui>

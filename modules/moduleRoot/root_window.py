@@ -5,9 +5,9 @@ from PySide6.QtCore import Qt
 from modules.moduleMain.main_widget import MainWidget
 from modules.moduleInventory.inventory_widget import InventoryWidget
 from modules.moduleEmploye.employe_widget import EmployeWidget
-from .root_window_gui import Ui_MainWindow
+from .root_window_gui import Ui_main_root
 
-class RootWindow(QMainWindow,Ui_MainWindow):
+class RootWindow(QMainWindow,Ui_main_root):
 
     widget_active:QWidget = None
     box_root:QVBoxLayout = QVBoxLayout()

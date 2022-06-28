@@ -22,6 +22,9 @@ from common.database.firebase import sales
 from common.values import strings
 from common.values import integers
 
+#printer
+from common.utils.printer import PrinterEscPos as Printer
+
 #widgets
 from common.widgets.cardShoppingCarWidget.card_shopping_car_widget import CardShoppingCarWidget
 
@@ -48,7 +51,7 @@ class MainWidget(QWidget,Ui_Form):
         self.setupUi(self)
 
         self.recycleBoxShoppingCar = QGridLayout(self)
-
+        self.lcd_number_efective_pay.setDigitCount(8)
         self.setupScrollArea()
         self.setupButtons()
         self.setupEditLine()
@@ -58,6 +61,7 @@ class MainWidget(QWidget,Ui_Form):
     def setupButtons(self):
         self.button_reset_shopping_car.setEnabled(False)
         self.button_reset_shopping_car.clicked.connect(self.clearShoppingCar)
+        self.button_open_cash_drawing.clicked.connect(lambda: Printer().openCashDrawing())
 
     def setupModeSystem(self):
         self.label_mode_system.setText(strings.mode_system_shopping_car)
@@ -75,13 +79,16 @@ class MainWidget(QWidget,Ui_Form):
     def setupEditLine(self):
         self.input_code_bar.returnPressed.connect(lambda: self.searchArticle(self.input_code_bar.text()))
 
-    def searchArticle(self,codeBar):
-        article = articles.getArticleById(codeBar)
-        if article == None:
-            QMessageBox.warning(self,strings.msg_error,strings.msg_article_not_found)
+    def searchArticle(self,codeBar:str):
+        if codeBar.__len__() == 0:
+            QMessageBox.warning(self,strings.msg_error,strings.msg_code_bar_search_is_empty)
         else:
-            self.createShoppingEntity(article)
-        self.input_code_bar.clear()
+            article = articles.getArticleById(codeBar)
+            if article == None:
+                QMessageBox.warning(self,strings.msg_error,strings.msg_article_not_found)
+            else:
+                self.createShoppingEntity(article)
+            self.input_code_bar.clear()
     
     def createShoppingEntity(self,article:ArticleEntity):
         shoppingEntity = ShoppingCardEntity(
@@ -135,12 +142,17 @@ class MainWidget(QWidget,Ui_Form):
             QMessageBox.warning(self,strings.msg_error,strings.msg_mode_system_not_found)
 
     def setDigitTotalPay(self,digit:str):
+        if self.totalPayDigit.__len__() > 0:
+            if self.totalPayDigit[-1] == ".":
+                if digit == "0":
+                    return
         if self.totalPayDigit.__len__() < integers.size_lcb_numer_pay_total:
             self.totalPayDigit += digit
             if self.totalPayDigit.__len__() == 0:
                 self.lcd_number_efective_pay.display(0)
             else:
-                self.lcd_number_efective_pay.display(float(self.totalPayDigit))
+                self.totalPayDigit.lstrip("0")
+                self.lcd_number_efective_pay.display(float(self.totalPayDigit.format()))
     
     def deleteDigit(self):
         self.totalPayDigit = self.totalPayDigit[0:self.totalPayDigit.__len__()-1]
@@ -165,10 +177,17 @@ class MainWidget(QWidget,Ui_Form):
         self.resetValueShoppingCard()
         self.reloadShoppingCardItems()
         self.setModeSystem(strings.mode_system_shopping_car)
-    
+
     def saveSale(self,listShoppingCard:list):
-        sale = SaleEntity(listArticle = listShoppingCard)
+        sale = SaleEntity(
+            listArticle = listShoppingCard,
+            payClient = self.lcd_number_change.value(),
+            changeClient = self.lcd_number_change.value()
+        )
         sales.saveSale(sale)
+        resultPrintTicket = QMessageBox.warning(self,strings.msg_await,strings.msg_ask_print_ticket_sale,QMessageBox.Yes|QMessageBox.No)
+        if resultPrintTicket == QMessageBox.Yes:
+            Printer().printSale(sale)
 
     def resetValueShoppingCard(self):
         self.totalPayDigit = ""
@@ -196,6 +215,17 @@ class MainWidget(QWidget,Ui_Form):
             QMessageBox.warning(self,"monto menor","el monto es menor que el total de venta")
         else:
             self.closeShoppingCard()
+    
+    def reloadShoppingCardItems(self):
+        row = 0
+        column = 0
+        for widget in self.listArticleShopping:
+            if column == self.columnSizeShoppingCar:
+                column = 0
+                row +=1
+            column += 1
+            self.recycleBoxShoppingCar.addWidget(widget,row,column)
+        self.refreshTotal()
 
     def keyPressEvent(self, event:QKeyEvent) -> None:
         key = event.key()
@@ -203,12 +233,18 @@ class MainWidget(QWidget,Ui_Form):
             case Qt.Key_Escape:
                 self.setModeSystem(strings.mode_system_shopping_car)
             case Qt.Key_F1:
-                self.setModeSystem(strings.mode_system_pay_efective)
+                if self.listArticleShopping.__len__() == 0:
+                    QMessageBox.warning(self,strings.msg_error,strings.msg_shopping_car_is_empty)
+                else:
+                    self.setModeSystem(strings.mode_system_pay_efective)
             case _:
                 if self.modeSystem == strings.mode_system_pay_efective:
                     match key:
                         case Qt.Key_Space:
                             self.verifyPay()
+                        case Qt.Key_Period:
+                            if "." not in self.totalPayDigit:
+                                self.setDigitTotalPay(".")
                         case Qt.Key_0:
                             self.setDigitTotalPay("0")
                         case Qt.Key_1:
@@ -237,16 +273,7 @@ class MainWidget(QWidget,Ui_Form):
                             print(".")
         return super().keyPressEvent(event)
     
-    def reloadShoppingCardItems(self):
-        row = 0
-        column = 0
-        for widget in self.listArticleShopping:
-            if column == self.columnSizeShoppingCar:
-                column = 0
-                row +=1
-            column += 1
-            self.recycleBoxShoppingCar.addWidget(widget,row,column)
-        self.refreshTotal()
+    
 
     ######################
     ##  MAIN AUX SIGNAL ##
