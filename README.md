@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a>
-    <img src="screenshoots/shoppingcar.png" alt="Logo" width="80" height="80">
+    <img height="400" width= "400" src="screenshoots/shoppingcar.png" alt="Logo" width="80" height="80">
   </a>
 </div>
 
