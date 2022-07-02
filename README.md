@@ -7,6 +7,16 @@
     <img height="400" width= "400" src="screenshoots/shoppingcar.png" alt="Logo" width="80" height="80">
   </a>
 </div>
+<div align="center">
+  <a>
+    <img height="400" width= "400" src="screenshoots/inventory.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
+<div align="center">
+  <a>
+    <img height="400" width= "400" src="screenshoots/employes.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 
 ## Como instalar
 1. clonar con el uso de git clone URL
